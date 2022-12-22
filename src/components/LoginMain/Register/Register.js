@@ -30,20 +30,20 @@ function Register(props) {
         // check password
         if (password.current.value.length < 8) {
             setCanRegister(false);
+            setLoginError();
             if (document.activeElement !== password.current &&
                 password.current.value.length !== 0) {
                 setPasswordError('To short password');
-                setLoginError();
             }
             return;
         }
         // check passwordConfirm
         if (passwordConfirm.current.value !== password.current.value) {
             setCanRegister(false);
+            setLoginError();
             if (document.activeElement !== passwordConfirm.current &&
                 passwordConfirm.current.value.length !== 0) {
                 setPasswordConfirmError('Not identical passwords');
-                setLoginError();
             }
             return;
         }
