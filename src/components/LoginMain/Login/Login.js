@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import style from '../LoginMain.module.css';
 
+import Hash from "../../../other/Hash";
 import Input from "../SharedComponents/Input/Input";
 import Button from "../SharedComponents/Button/Button";
 
@@ -17,7 +18,6 @@ function Login(props) {
         setPasswordError();
         if (login.current.value.length < 5) {
             setCanLogin(false);
-            console.log('s');
             if (document.activeElement !== login.current &&
                 login.current.value.length !== 0) {
                 setLoginError('To short login');
@@ -47,9 +47,9 @@ function Login(props) {
         fetch('http://213.155.174.52:5000/users/' + login.current.value)
             .then(response => response.json())
             .then(result => {
-                if (result[1] === password.current.value) {
+                if (result[1] === Hash(password.current.value)) {
                     props.setLogin(login.current.value);
-                    props.setPassword(password.current.value);
+                    props.setPassword(Hash(password.current.value));
                 } else {
                     setPasswordError('Password or login is wrong!');
                 }

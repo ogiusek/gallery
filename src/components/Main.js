@@ -7,7 +7,7 @@ import ImagesMain from "./ImagesMain/ImagesMain";
 function Main(props) {
     const [isLogged, setIsLogged] = useState(false);
     const isLoggedIn = async (login, password) => {
-        if (typeof login !== typeof "String" || login.length <= 0) {
+        if (typeof login !== typeof 'string' || login.length <= 0) {
             setIsLogged(false);
             return
         }

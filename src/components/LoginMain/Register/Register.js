@@ -1,6 +1,7 @@
-import React, { useReducer, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import style from '../LoginMain.module.css';
 
+import Hash from "../../../other/Hash";
 import Input from "../SharedComponents/Input/Input";
 import Button from "../SharedComponents/Button/Button";
 
@@ -74,13 +75,13 @@ function Register(props) {
             },
             body: JSON.stringify({
                 'login': login.current.value,
-                'password': password.current.value
+                'password': Hash(password.current.value)
             })
         }).then(response => response.json())
             .then(result => {
                 if (result['value'] === 'worked') {
                     props.setLogin(login.current.value);
-                    props.setPassword(password.current.value);
+                    props.setPassword(Hash(password.current.value));
                 }
             })
     }
@@ -92,7 +93,7 @@ function Register(props) {
                 <Input key={'2'} hide={true} text={'Password'} innerRef={password} error={passwordError} method={checkCanRegister} />
                 <Input key={'3'} hide={true} text={'Confirm password'} innerRef={passwordConfirm} error={passwordConfirmError} method={checkCanRegister} />
             </div>
-            <Button canUse={canRegister} text={'Register'} method={Register} />
+            <Button canUse={canRegister} text={'Register'} method={checkCanRegister} />
         </form>
     );
 }
