@@ -1,51 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import style from '../LoginMain.module.css';
 
 import Input from "../SharedComponents/Input/Input";
 import Button from "../SharedComponents/Button/Button";
 
 function Login(props) {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+    const login = useRef();
+    const password = useRef();
+    const [loginError, setLoginError] = useState();
+    const [passwordError, setPasswordError] = useState();
     const [canLogin, setCanLogin] = useState(false);
 
     const checkCanLogin = () => {
         // check login
-        if (login.length < 5) {
+        setLoginError();
+        setPasswordError();
+        if (login.current.value.length < 5) {
             setCanLogin(false);
+            console.log('s');
+            if (document.activeElement !== login.current &&
+                login.current.value.length !== 0) {
+                setLoginError('To short login');
+            }
             return;
         }
+
         // check password
-        if (password.length < 8) {
+        if (password.current.value.length < 8) {
             setCanLogin(false);
+            if (document.activeElement !== password.current &&
+                password.current.value.length !== 0) {
+                setPasswordError('To short password');
+            }
             return;
         }
         setCanLogin(true);
     }
 
-    const Login = async () => {
-        fetch('http://213.155.174.52:5000/users/' + login)
+    const Login = async (event) => {
+        try {
+            event.preventDefault()
+        } catch (error) { }
+        if (!canLogin) {
+            return;
+        }
+        fetch('http://213.155.174.52:5000/users/' + login.current.value)
             .then(response => response.json())
             .then(result => {
-                if (result[1] === password) {
-                    props.setLogin(login);
-                    props.setPassword(password);
+                if (result[1] === password.current.value) {
+                    props.setLogin(login.current.value);
+                    props.setPassword(password.current.value);
+                } else {
+                    setPasswordError('Password or login is wrong!');
                 }
             })
     }
 
-    useEffect(() => {
-        checkCanLogin();
-    }, [login, password]);
-
     return (
-        <div className={style.main}>
+        <form className={style.main} onSubmit={Login}>
             <div className={style.inputs}>
-                <Input key={'1'} hide={false} text={'Login'} val={login} setVal={setLogin} />
-                <Input key={'2'} hide={true} text={'Password'} val={password} setVal={setPassword} />
+                <Input key={'1'} hide={false} text={'Login'} error={loginError} innerRef={login} method={checkCanLogin} />
+                <Input key={'2'} hide={true} text={'Password'} error={passwordError} innerRef={password} method={checkCanLogin} />
             </div>
-            <Button canUse={canLogin} onUse={Login} text={'Login'} />
-        </div>
+            <Button canUse={canLogin} text={'Login'} method={checkCanLogin} />
+        </form>
     );
 }
 

@@ -19,7 +19,6 @@ function Main(props) {
     }
 
     useEffect(() => {
-        console.log(props.login + ' ' + props.password);
         isLoggedIn(props.login, props.password);
     }, [props.password, props.login]);
 
