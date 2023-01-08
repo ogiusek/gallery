@@ -1,0 +1,39 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label {
+    width: 70%;
+    font-size: 19px;
+}
+
+.input {
+    border: 1px solid black;
+    border-radius: 3px;
+
+    padding-left: 20px;
+    width: 330px;
+    height: 30px;
+
+    font-size: 24px;
+}
+
+.confirm {
+    background-color: greenyellow;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+    margin-bottom: 20px;
+
+    font-size: 24px;
+
+    border-radius: 3px;
+
+}

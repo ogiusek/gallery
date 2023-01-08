@@ -1,0 +1,12 @@
+.main {
+    width: 100vw;
+    min-height: calc(100vh - 86px);
+
+    background-color: azure;
+    -webkit-box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.3);
+
+    padding-top: 15px;
+    padding-bottom: 20px;
+}

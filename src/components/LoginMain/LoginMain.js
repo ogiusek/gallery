@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./LoginMain.module.css";
 
-import Logo from "./Logo";
+import Logo from "./SharedComponents/Logo/Logo";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import ChangeLogin from "./ChangeLogin/ChangeLogin";
@@ -11,7 +11,9 @@ function LoginMain(props) {
 
     return (
         <div className={style.mainComponent}>
-            <Logo />
+            <div className={style.logo}>
+                <Logo />
+            </div>
             {register ?
                 <Register setLogin={props.setLogin} setPassword={props.setPassword} /> :
                 <Login setLogin={props.setLogin} setPassword={props.setPassword} />}

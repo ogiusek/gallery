@@ -1,0 +1,33 @@
+.main {
+    z-index: 2;
+    position: fixed;
+    right: 0px;
+    width: 240px;
+
+    color: black;
+    background-color: azure;
+    box-shadow: inset 1000px 0 0 0 rgb(0, 0, 0, 0.05);
+    border: 1px solid black;
+    border-top: none;
+    border-right: none;
+}
+
+.main div {
+    text-align: center;
+    transition: 1s;
+    font-size: 24px;
+}
+
+.main div:hover {
+    cursor: pointer;
+    box-shadow: inset 1000px 0 0 0 rgb(0, 0, 0, 0.1);
+}
+
+.outside {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}

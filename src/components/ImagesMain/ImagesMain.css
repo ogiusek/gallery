@@ -1,0 +1,8 @@
+.main {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.main[class~="night"] {
+    filter: invert(100%);
+}

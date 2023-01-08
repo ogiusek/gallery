@@ -5,24 +5,22 @@ import AuthContext from './other/AuthContext';
 import Main from './components/Main';
 
 function App() {
-  const [login, setLogin] = useState(null);
-  const [password, setPassword] = useState(null);
-  // const ctx = useContext(AuthContext);
-  return (
-    <AuthContext.Provider value={{
-      login: login,
-      password: password,
-      setLogin: setLogin,
-      setPassword: setPassword
-    }}>
+  const [login, setLogin] = useState(localStorage.getItem('user'));
+  const [password, setPassword] = useState(Number(localStorage.getItem('password')));
 
-      <Main login={login}
-        password={password}
-        setLogin={setLogin}
-        setPassword={setPassword} />
+  return (<AuthContext.Provider value={{
+    login: login,
+    password: password,
+    setLogin: setLogin,
+    setPassword: setPassword
+  }}>
 
-    </AuthContext.Provider>
-  );
+    <Main login={login}
+      password={password}
+      setLogin={setLogin}
+      setPassword={setPassword} />
+
+  </AuthContext.Provider>);
 }
 
 export default App;

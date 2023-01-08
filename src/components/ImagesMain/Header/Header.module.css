@@ -1,0 +1,24 @@
+.main {
+    position: fixed;
+    width: 100vw;
+    height: 80px;
+
+    background-color: azure;
+    border-bottom: 1px solid darkgrey;
+    box-shadow: 0px 0px 30px 0px rgb(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    z-index: 1;
+}
+
+.placeholder {
+    position: static;
+}
+
+.logo {
+    margin-left: 10px;
+    width: 200px;
+}
