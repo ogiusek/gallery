@@ -11,7 +11,7 @@ function SettingsMain(props) {
     return (<div className={style.main}>
         <SettingsIcon select={select} setSelect={setSelect} />
         {select && <SettingsSelect setSettings={setSettings} setSelect={setSelect} nightMode={props.nightMode} setNightMode={props.setNightMode} />}
-        {settings && <Settings setSettings={setSettings} />}
+        {settings && <Settings setSettings={setSettings} nightMode={props.nightMode} setNightMode={props.setNightMode} />}
     </div>);
 }
 

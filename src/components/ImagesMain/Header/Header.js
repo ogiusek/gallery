@@ -3,7 +3,7 @@ import style from "./Header.module.css";
 
 import Logo from "../../LoginMain/SharedComponents/Logo/Logo";
 import SettingsMain from "./Settings/SettingsMain";
-import AuthContext from "../../../other/AuthContext";
+import AuthContext from "../../../other/other/AuthContext";
 
 function Header(props) {
     const ctx = React.useContext(AuthContext);

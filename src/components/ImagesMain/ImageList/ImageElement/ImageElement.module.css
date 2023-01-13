@@ -4,7 +4,8 @@
     align-items: center;
     flex-direction: column;
     width: 400px;
-    box-shadow: 0px 0px 60px 0px rgb(0, 0, 0, 0.4);
+    max-width: calc(100% - 40px);
+    box-shadow: 0px 0px 30px 0px rgb(0, 0, 0, 0.4);
 
     padding: 20px;
     padding-top: 10px;
@@ -22,7 +23,6 @@
 }
 
 .likes {
-    margin-top: 15px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -32,8 +32,8 @@
 
 .likes img {
     width: 40px;
+    max-width: 100%;
     transition: 1s;
-    border-radius: 10px;
 }
 
 .likes h1 {
@@ -55,12 +55,18 @@
 
 .title {
     font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .description {
     font-size: 24px;
     margin-bottom: 15px;
+    text-align: center;
+}
+
+.detectedUrl {
+    text-decoration: underline;
 }
 
 .user {

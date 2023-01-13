@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 
 import LoginMain from "./LoginMain/LoginMain";
 import ImagesMain from "./ImagesMain/ImagesMain";
+import link from "../other/other/link";
 
 function Main(props) {
-    // const [isLogged, setIsLogged] = useState(false);
     const [isLogged, setIsLogged] = useState(true);
     const isLoggedIn = async (login, password) => {
-        // localStorage.removeItem('user');
         if (typeof login !== typeof 'string' || login.length <= 0) {
             setIsLogged(false);
-            return
+            return;
         }
-        fetch('http://213.155.174.52:5000/users/' + login)
+        fetch(link + 'users/' + login)
             .then(response => response.json())
             .then(result => {
                 if (result[1] === password) {
-                    localStorage.setItem('user', login);
+                    localStorage.setItem('login', login);
                     localStorage.setItem('password', password);
                 }
                 setIsLogged(result[1] === password);
@@ -29,9 +28,10 @@ function Main(props) {
 
     return (
         <React.Fragment>
-            {isLogged ?
-                (<ImagesMain login={props.login} password={props.password} setLogin={props.setLogin} setPassword={props.setPassword} />) :
-                (<LoginMain login={props.login} password={props.password} setLogin={props.setLogin} setPassword={props.setPassword} />)}
+            {
+                isLogged ?
+                    (<ImagesMain />) :
+                    (<LoginMain login={props.login} password={props.password} setLogin={props.setLogin} setPassword={props.setPassword} />)}
         </React.Fragment>
     );
 }

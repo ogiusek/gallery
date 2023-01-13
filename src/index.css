@@ -23,9 +23,8 @@ code {
   outline: none;
 }
 
-.unselectable {
+body {
   user-select: none;
-  pointer-events: none;
 }
 
 .no_overflow {

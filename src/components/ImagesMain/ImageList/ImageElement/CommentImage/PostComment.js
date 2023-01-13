@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import style from "./Comment.module.css";
 
-import AuthContext from "../../../../../other/AuthContext";
+import AuthContext from "../../../../../other/other/AuthContext";
 import sendCommentImage from "./sendCommentImage";
+import link from "../../../../../other/other/link";
 
 function PostImage(props) {
     const ctx = React.useContext(AuthContext);
@@ -16,7 +17,7 @@ function PostImage(props) {
     const submit = (event) => {
         event.preventDefault();
         props.setComments(props.comments);
-        fetch('http://213.155.174.52:5000/comments/post', {
+        fetch(link + 'comments/post', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

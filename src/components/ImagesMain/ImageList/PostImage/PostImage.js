@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import style from "./PostImage.module.css";
 
-import AuthContext from "../../../../other/AuthContext";
+import AuthContext from "../../../../other/other/AuthContext";
 import initPostImage from "./InitPostImage";
+import link from "../../../../other/other/link";
 
 function PostImage(props) {
     const ctx = React.useContext(AuthContext);
@@ -17,47 +18,45 @@ function PostImage(props) {
 
     const formSubmit = (event) => {
         event.preventDefault();
-        fetch('http://213.155.174.52:5000/images/post', {
+        fetch(link + 'images/post', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'value': image,
                 'name': title,
                 'description': description,
+                'value': image,
                 'user_login': ctx.login
             })
         })
             .then(response => response.json())
-            .then(result => {
+            .then(() => {
                 props.refresh();
             })
     }
 
     return (<form className={style.form} onSubmit={formSubmit} >
-        <div className={style.desc}>
-            {/* <div>Share your images</div> */}
-        </div>
-        <div className={style.file} style={{ 'backgroundImage': 'url(' + image + ')' }}>
-            <input required type={"file"}
-                accept={'image/*'}
-                onChange={event => reader.readAsDataURL(event.target.files[0])} />
-        </div>
-        <div className={style.inputs}>
-            <div>
-                <label className="unselectable" htmlFor="title">Title</label>
+        <div className={style.textInputs}>
+            <div className={style.title}>
+                <label htmlFor="title">Title</label>
                 <input placeholder="Title" name="title" required type={'text'} value={title} onChange={event => setTitle(event.target.value)} />
             </div>
 
-            <div>
-                <label className="unselectable" htmlFor="description">Description</label>
+            <div className={style.desc}>
+                <label htmlFor="description">Description</label>
                 <input placeholder="Description" name="description" required type={'text'} value={description} onChange={event => setDescription(event.target.value)} />
             </div>
-
         </div>
-        <button type={'submit'} className={style.submitButton}><p className="unselectable">Submit</p></button>
-    </form>);
+        <div className={style.submitBox + (initPostImage !== image ? ' invert' : '')}>
+            <div className={style.file} style={{ 'backgroundImage': 'url(' + image + ')' }}>
+                <input required type={"file"}
+                    accept={'image/*'}
+                    onInput={event => reader.readAsDataURL(event.target.files[0])} />
+            </div>
+            <button type={'submit'} className={style.submitButton}>Submit</button>
+        </div>
+    </form >);
 }
 
 export default PostImage;

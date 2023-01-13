@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import style from '../LoginMain.module.css';
 
-import Hash from "../../../other/Hash";
+import Hash from "../../../other/other/Hash";
 import Input from "../SharedComponents/Input/Input";
 import Button from "../SharedComponents/Button/Button";
+import link from "../../../other/other/link";
 
 
 function Register(props) {
@@ -48,7 +49,7 @@ function Register(props) {
             return;
         }
 
-        fetch('http://213.155.174.52:5000/users/' + login.current.value)
+        fetch(link + 'users/' + login.current.value)
             .then(response => response.json())
             .then(result => {
                 if (result['value'] === 'not found in database') {
@@ -68,7 +69,7 @@ function Register(props) {
         if (!canRegister) {
             return;
         }
-        fetch('http://213.155.174.52:5000/users/post', {
+        fetch(link + 'users/post', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

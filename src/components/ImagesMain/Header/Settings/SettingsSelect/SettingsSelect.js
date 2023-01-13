@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./SettingsSelect.module.css";
 
-import AuthContext from "../../../../../other/AuthContext";
+import AuthContext from "../../../../../other/other/AuthContext";
 
 function SettingsSelect(props) {
     const ctx = React.useContext(AuthContext);
@@ -12,10 +12,10 @@ function SettingsSelect(props) {
         <div>
             <div className={style.outside} onClick={unSelect} />
             <div className={style.main}>
-                <div onClick={() => {
+                <div className="invert" onClick={() => {
                     ctx.setLogin();
                     ctx.setPassword();
-                    localStorage.removeItem('user');
+                    localStorage.removeItem('login');
                     localStorage.removeItem('password');
                     unSelect();
                 }} style={{ 'color': 'red' }}>Logout</div>
@@ -27,7 +27,12 @@ function SettingsSelect(props) {
 
                 <div onClick={() => {
                     unSelect();
-                    props.setNightMode(!props.nightmode);
+                    if (localStorage.getItem('night')) {
+                        localStorage.removeItem('night');
+                    } else {
+                        localStorage.setItem('night', true);
+                    }
+                    props.setNightMode(!props.nightMode);
                 }}>Night mode</div>
             </div>
         </div >);

@@ -3,7 +3,7 @@ import style from "./SettingsIcon.module.css";
 
 function SettingsIcon(props) {
     return (
-        <div className={style.center}>
+        <div className={style.center + ' invert'}>
             <div className={style.image} onClick={() => {
                 props.setSelect(!props.select);
             }} />

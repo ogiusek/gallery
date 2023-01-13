@@ -3,18 +3,21 @@ import style from "./ImageList.module.css";
 
 import ImageElement from "./ImageElement/ImageElement";
 import PostImage from "./PostImage/PostImage";
+import link from "../../../other/other/link";
+import AuthContext from "../../../other/other/AuthContext";
 
-function ImageList(props) {
+function ImageList() {
+    const ctx = React.useContext(AuthContext);
     const [images, setImages] = useState([]);
     let loading = false;
     // user_login name description value
 
     const fetchImages = () => {
         loading = true;
-        fetch('http://213.155.174.52:5000/all/images')
+        fetch(link + 'images/' + ctx.login)
             .then(response => response.json())
             .then(result => {
-                setImages(result.reverse());
+                setImages(result);
                 loading = false;
             });
     }
@@ -24,8 +27,8 @@ function ImageList(props) {
     }, []);
 
     return (<div className={style.main}>
-        {loading ? <div /> : < PostImage refresh={fetchImages} />}
-        {images.map((element, index) => {
+        {loading ? <div /> : <PostImage refresh={fetchImages} />}
+        {Array.isArray(images) && images.map((element) => {
             return <ImageElement
                 key={element[0]}
                 id={element[0]}
@@ -33,6 +36,10 @@ function ImageList(props) {
                 name={element[2]}
                 description={element[3]}
                 value={element[4]}
+
+                likes={element[6] + 0}
+                unLikes={element[7] + 0}
+                liked={element[8]}
             />;
         })}
     </div>);

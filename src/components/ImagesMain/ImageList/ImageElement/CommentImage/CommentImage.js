@@ -3,21 +3,26 @@ import style from "./Comment.module.css";
 
 import PostImage from "./PostComment";
 import Comment from "./Comment";
+import AuthContext from "../../../../../other/other/AuthContext";
+import link from "../../../../../other/other/link";
 
 function CommentImage(props) {
     // [0('id'), 1('login'), 3('value'), 4('date')]
+    const ctx = React.useContext(AuthContext);
     const [comments, setComments] = useState([]);
     const refresh = () => {
-        fetch('http://213.155.174.52:5000/comments/' + props.id)
+        fetch(link + 'comments/' + ctx.login + '/' + props.id)
             .then(response => response.json())
             .then(result => setComments(result));
     }
+
     useEffect(() => {
         refresh();
 
-        document.body.classList.add('no_overflow');
-        return () => document.body.classList.remove('no_overflow');
-    }, []);
+        ctx.hide_overflow();
+        return ctx.show_overflow;
+    }, [ctx]);
+
     return (<div>
         <div className={style.commentBack} onClick={() => { props.setComment(false); }} />
         <div className={style.commentMain}>
@@ -29,7 +34,10 @@ function CommentImage(props) {
                         id={element[0]}
                         user={element[1]}
                         value={element[3]}
-                        date={element[4]} />);
+                        date={element[4]}
+                        likes={element[5] + 0}
+                        unlikes={element[6] + 0}
+                        like={element[7]} />);
                 })}
             </div>
             <PostImage refresh={refresh} image={props.id} comments={comments} setComments={setComments} />

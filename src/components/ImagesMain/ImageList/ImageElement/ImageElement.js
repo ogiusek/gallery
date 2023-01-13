@@ -1,100 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./ImageElement.module.css";
 
 import imageImages from "./imageImages";
-import AuthContext from "../../../../other/AuthContext";
 import CommentImage from "./CommentImage/CommentImage";
+import ImageLike from "./ImageLike";
+
+const URL_REGEX = [/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/];
 
 function ImageElement(props) {
-    const ctx = React.useContext(AuthContext);
-    const [like, setLike] = useState(0);
-    const [likes, setLikes] = useState(0);
-    const [unlikes, setUnlikes] = useState(0);
+    const [like, setLike] = useState(props.liked);
+    const [likes, setLikes] = useState(props.likes);
+    const [unlikes, setUnlikes] = useState(props.unLikes);
     const [comment, setComment] = useState(false);
     // user description value name
 
-    useEffect(() => {
-        const initSetLike = (value) => {
-            if (value) {
-                setLike(-1);
-            } else {
-                setLike(1);
-            }
-        };
-        fetch('http://213.155.174.52:5000/likes/' + props.id)
-            .then(response => response.json())
-            .then(result => {
-                result[2].map(element => element[1] === ctx.login && initSetLike(element[3]))
-                setLikes(result[1])
-                setUnlikes(result[0])
-            });
-    }, [ctx.login, props.id]);
-
-    const checkLastLikeVal = (val) => {
-        if (val !== like) {
-            val === 1 && setLikes(likes + 1);
-            val === -1 && setUnlikes(unlikes + 1);
-        } else {
-            fetch('http://213.155.174.52:5000/likes/delete', {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    'image_id': props.id,
-                    'user_login': ctx.login
-                })
-            })
-        }
-
-        if (like === 1) {
-            setLikes(likes - 1);
-        } else if (like === -1) {
-            setUnlikes(unlikes - 1);
-        }
-
-        fetch('http://213.155.174.52:5000/likes/post', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'value': val !== 1,
-                'image_id': props.id,
-                'user_login': ctx.login
-            })
-        });
-    }
-
-    const giveLike = () => {
-        checkLastLikeVal(1);
-        setLike(like === 1 ? 0 : 1);
-    }
-
-    const giveUnlike = () => {
-        checkLastLikeVal(-1);
-        setLike(like === -1 ? 0 : -1);
-    }
-
     return (<div className={style.main}>
         {comment && <CommentImage setComment={setComment} id={props.id} />}
-        <div className={'unselectable ' + style.title}>{props.name}</div>
-        <div className={'unselectable ' + style.description}>{props.description}</div>
+        <div className={style.title}>{props.name}</div> {/* title */}
+        <div className={style.description}>{
+            props.description.split(' ').map((word, key) => {
+                return [word.match(URL_REGEX[0]) || word.match(URL_REGEX[1]) ?
+                    <a key={key} className={style.detectedUrl} href={word} target={'_blank'} rel="noreferrer">{word.replace('http://', '').replace('https://', '')}</a> :
+                    word, ' '];
+            })
+        }</div> {/* descritpion */}
 
-        <img className={'unselectable ' + style.img} alt="" src={props.value} />
-        <div className={style.likes}>
-            <div onClick={giveLike}>
-                <img src={imageImages.like} alt="like" className={'unselectable ' + (like === 1 ? style.selectedLike : '')} />
-                <h1 className="unselectable">{likes}</h1>
-            </div>
-            <div onClick={giveUnlike}>
-                <img src={imageImages.unlike} alt="unlike" className={'unselectable ' + (like === -1 ? style.selectedUnlike : '')} />
-                <h1 className="unselectable">{unlikes}</h1>
-            </div>
+        <img className={'img ' + style.img} loading="lazy" alt="" src={props.value} /> {/* image */}
+        <div style={{ width: '100%', marginTop: '15px' }}>
+            <ImageLike link={'likes/'} id={props.id}
+                setLike={setLike} like={like}
+                setLikes={setLikes} likes={likes}
+                setUnlikes={setUnlikes} unlikes={unlikes} />
         </div>
-        <img className={style.comment} alt="comment" src={imageImages.comment} onClick={setComment} />
 
-        <div className={'unselectable ' + style.user}>{props.user}</div>
+        <img className={style.comment} loading="lazy" alt="comment" src={imageImages.comment} onClick={setComment} /> {/* comments */}
+        <div className={style.user}>{props.user}</div> {/* creator */}
     </div>);
 }
 

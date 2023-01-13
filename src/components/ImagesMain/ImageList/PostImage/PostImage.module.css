@@ -1,6 +1,7 @@
 .form {
-    max-width: 440px;
-    height: 250px;
+    width: 440px;
+    min-height: 250px;
+    max-width: 100%;
 
     box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0, 0.3);
 
@@ -12,53 +13,33 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-.desc {
-    margin-bottom: auto;
+
+.textInputs {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.desc div {
-    position: absolute;
-    margin-top: 5px;
-    font-size: 20px;
-}
-
-.file {
-    border: 1px solid black;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 150px;
-    aspect-ratio: 1/1;
-}
-
-.file input {
-    width: 100%;
-    aspect-ratio: 1/1;
-    opacity: 0;
-}
-
-.inputs {
-    height: 150px;
+.textInputs div {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.inputs div {
-    display: flex;
-    flex-direction: column;
-}
-
-.inputs label {
+.textInputs label {
     margin-top: 10px;
     font-size: 20px;
+    margin-right: auto;
 }
 
-.inputs input {
+.textInputs input {
     border: 1px solid rgb(100, 100, 100);
-    width: 150px;
+    width: 100%;
     height: 50px;
 
     font-size: 22px;
@@ -67,18 +48,46 @@
     margin-bottom: 10px;
 }
 
-.submitButton {
-    background-color: transparent;
-    box-shadow: inset 0px 0px 10px 0px rgb(0, 0, 0, 0.5);
-    /* margin-left: 5px; */
-    padding: 10px;
-    border-radius: 60px;
+.submitBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.submitButton p {
+.file {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 150px;
+    max-width: 50%;
+
     aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+}
+
+.file input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+.submitButton {
+    background-color: rgb(100, 200, 255);
+    background: linear-gradient(30deg, #009efd, #2af598);
+    color: white;
+    max-width: 100%;
+
+    border-radius: 20px;
+    padding: 11px;
+    padding-left: 6px;
+    padding-right: 6px;
     font-size: 20px;
+}
+
+@media screen and (max-width: 350px) {
+    .submitButton {
+        font-size: 6vw;
+    }
 }
