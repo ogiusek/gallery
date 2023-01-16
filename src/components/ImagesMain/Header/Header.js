@@ -14,7 +14,10 @@ function Header(props) {
                 <div className={style.logo}>
                     <Logo />
                 </div>
-                {ctx.login}
+                <div style={{ height: '100%', display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+                    <img className={style.userImage + ' invert'} src={ctx.userImg} />
+                    {ctx.login}
+                </div>
                 <SettingsMain nightMode={props.nightMode} setNightMode={props.setNightMode} />
             </div>
             <div className={style.main + ' ' + style.placeholder}></div>

@@ -36,10 +36,10 @@ function ImageList() {
                 name={element[2]}
                 description={element[3]}
                 value={element[4]}
-
-                likes={element[6] + 0}
-                unLikes={element[7] + 0}
-                liked={element[8]}
+                userImg={element[6]}
+                likes={element[7] + 0}
+                unLikes={element[8] + 0}
+                liked={element[9]}
             />;
         })}
     </div>);

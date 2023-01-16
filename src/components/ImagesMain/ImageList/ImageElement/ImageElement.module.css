@@ -73,3 +73,12 @@
     font-size: 20px;
     margin-bottom: 10px;
 }
+
+.userImage {
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 25px;
+
+    background-color: white;
+    backdrop-filter: box-shadow(0 0 10px 0 white);
+}

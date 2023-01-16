@@ -93,3 +93,11 @@
 .removeComments div {
     margin: 0;
 }
+
+.userImage {
+    width: 30px;
+    border-radius: 15px;
+    background-color: white;
+    aspect-ratio: 1/1;
+    margin-right: 5px;
+}

@@ -6,7 +6,6 @@ import Input from "../SharedComponents/Input/Input";
 import Button from "../SharedComponents/Button/Button";
 import link from "../../../other/other/link";
 
-
 function Register(props) {
     const login = useRef();
     const password = useRef();

@@ -6,6 +6,7 @@ import Main from './components/Main';
 
 function App() {
   const [login, setLogin] = useState(localStorage.getItem('login'));
+  const [userImg, setUserImg] = useState('');
   const [password, setPassword] = useState(Number(localStorage.getItem('password')));
   const [error, setError] = useState('');
 
@@ -20,6 +21,7 @@ function App() {
   return (<AuthContext.Provider value={{
     login: login,
     password: password,
+    userImg: userImg,
     setLogin: setLogin,
     setPassword: setPassword,
     setError: setError,
@@ -30,6 +32,7 @@ function App() {
     <Main login={login}
       password={password}
       setLogin={setLogin}
+      setUserImg={setUserImg}
       setPassword={setPassword} />
     {error}
 

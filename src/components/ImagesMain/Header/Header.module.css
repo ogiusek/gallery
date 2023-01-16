@@ -22,3 +22,11 @@
     margin-left: 10px;
     width: 200px;
 }
+
+.userImage {
+    height: 80%;
+    aspect-ratio: 1/1;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 1000px;
+}

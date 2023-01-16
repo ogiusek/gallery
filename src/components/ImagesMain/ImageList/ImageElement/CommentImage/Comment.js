@@ -11,7 +11,8 @@ function Comment(props) {
     // date value user id
 
     return (<div className={style.comment}>
-        <h1 style={{ marginLeft: '15px', fontSize: '15px', display: 'flex', flexDirection: 'row' }}>
+        <h1 style={{ fontSize: '15px', display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+            <img src={props.userImg} className={style.userImage + ' invert'} />
             {props.user}
             <div style={{ marginLeft: '20px' }}>
                 {GetDate(props.date)}

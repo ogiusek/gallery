@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./ImageElement.module.css";
 
 import imageImages from "./imageImages";
-import CommentImage from "./CommentImage/CommentImage";
+import CommentImages from "./CommentImage/CommentImages";
 import ImageLike from "./ImageLike";
 
 const URL_REGEX = [/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
@@ -16,8 +16,11 @@ function ImageElement(props) {
     // user description value name
 
     return (<div className={style.main}>
-        {comment && <CommentImage setComment={setComment} id={props.id} />}
-        <div className={style.title}>{props.name}</div> {/* title */}
+        {comment && <CommentImages setComment={setComment} id={props.id} />}
+        <div className={style.title}>{props.name}
+            <br />
+            <img src={props.userImg} className={style.userImage + ' invert'} />
+        </div> {/* title */}
         <div className={style.description}>{
             props.description.split(' ').map((word, key) => {
                 return [word.match(URL_REGEX[0]) || word.match(URL_REGEX[1]) ?

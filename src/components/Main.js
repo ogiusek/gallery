@@ -18,6 +18,7 @@ function Main(props) {
                     localStorage.setItem('login', login);
                     localStorage.setItem('password', password);
                 }
+                props.setUserImg(result[2]);
                 setIsLogged(result[1] === password);
             });
     }
@@ -31,7 +32,8 @@ function Main(props) {
             {
                 isLogged ?
                     (<ImagesMain />) :
-                    (<LoginMain login={props.login} password={props.password} setLogin={props.setLogin} setPassword={props.setPassword} />)}
+                    (<LoginMain login={props.login} password={props.password}
+                        setLogin={props.setLogin} setPassword={props.setPassword} />)}
         </React.Fragment>
     );
 }

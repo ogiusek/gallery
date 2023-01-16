@@ -6,7 +6,7 @@ import Comment from "./Comment";
 import AuthContext from "../../../../../other/other/AuthContext";
 import link from "../../../../../other/other/link";
 
-function CommentImage(props) {
+function CommentImages(props) {
     // [0('id'), 1('login'), 3('value'), 4('date')]
     const ctx = React.useContext(AuthContext);
     const [comments, setComments] = useState([]);
@@ -35,9 +35,10 @@ function CommentImage(props) {
                         user={element[1]}
                         value={element[3]}
                         date={element[4]}
-                        likes={element[5] + 0}
-                        unlikes={element[6] + 0}
-                        like={element[7]} />);
+                        userImg={element[5]}
+                        likes={element[6] + 0}
+                        unlikes={element[7] + 0}
+                        like={element[8]} />);
                 })}
             </div>
             <PostImage refresh={refresh} image={props.id} comments={comments} setComments={setComments} />
@@ -45,4 +46,4 @@ function CommentImage(props) {
     </div>);
 }
 
-export default CommentImage;
+export default CommentImages;

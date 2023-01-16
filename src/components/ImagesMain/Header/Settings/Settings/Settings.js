@@ -31,6 +31,7 @@ function Settings(props) {
                 body: JSON.stringify({
                     'login': ctx.login,
                     'newLogin': ctx.login,
+                    'image': ctx.userImg,
                     'password': Hash(password.current.value)
                 })
             }).then(response => response.json())
