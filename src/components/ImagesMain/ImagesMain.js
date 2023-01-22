@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './ImagesMain.css';
 
-import Header from "./Header/Header";
+import Header from "../Header/Header";
 import ImageList from "./ImageList/ImageList";
 
 function ImagesMain(props) {

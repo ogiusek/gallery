@@ -17,9 +17,16 @@
 }
 
 .img {
-    width: 95%;
+    max-height: 95%;
+    max-width: 95%;
+
     border-radius: 5px;
     box-shadow: 0px 0px 15px 0px black;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .likes {
@@ -55,13 +62,12 @@
 
 .title {
     font-size: 28px;
-    margin-bottom: 15px;
     text-align: center;
 }
 
 .description {
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
@@ -69,9 +75,26 @@
     text-decoration: underline;
 }
 
+
+.userWraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s;
+}
+
+
+.userWraper:not(:hover) .user {
+    display: none;
+}
+
 .user {
+    padding: 3px;
+    position: absolute;
+    border: 1px solid black;
+    background-color: azure;
+    text-align: center;
     font-size: 20px;
-    margin-bottom: 10px;
 }
 
 .userImage {

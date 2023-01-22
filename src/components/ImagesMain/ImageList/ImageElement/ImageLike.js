@@ -11,7 +11,7 @@ function ImageLike(props) {
         if (val !== props.like) {
             val === 1 && props.setLikes(props.likes + 1);
             val === -1 && props.setUnlikes(props.unlikes + 1);
-            fetch(link + props.link + 'post', {
+            fetch(link + props.link, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,11 +19,12 @@ function ImageLike(props) {
                 body: JSON.stringify({
                     'value': val === 1,
                     'comment_id': props.id,
+                    'image_id': props.id,
                     'user_login': ctx.login
                 })
             });
         } else {
-            fetch(link + props.link + 'delete', {
+            fetch(link + props.link, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json'

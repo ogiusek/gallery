@@ -7,6 +7,7 @@ import link from "../../../../other/other/link";
 
 function PostImage(props) {
     const ctx = React.useContext(AuthContext);
+    const [post, setPost] = useState(false);
     const [image, setImage] = useState(initPostImage);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -32,31 +33,42 @@ function PostImage(props) {
         })
             .then(response => response.json())
             .then(() => {
+                setPost(false);
+                setDescription('');
+                setTitle('');
+                setImage(initPostImage);
                 props.refresh();
             })
     }
 
-    return (<form className={style.form} onSubmit={formSubmit} >
-        <div className={style.textInputs}>
-            <div className={style.title}>
-                <label htmlFor="title">Title</label>
-                <input placeholder="Title" name="title" required type={'text'} value={title} onChange={event => setTitle(event.target.value)} />
-            </div>
+    return (
+        <div style={{ 'display': 'flex', 'flexDirection': 'column', 'alignItems': 'center' }}>
+            {post && (
+                <form className={style.form} onSubmit={formSubmit} >
+                    <div className={style.textInputs}>
+                        <div className={style.title}>
+                            <label htmlFor="title">Title</label>
+                            <input placeholder="Title" name="title" required type={'text'} value={title} onChange={event => setTitle(event.target.value)} />
+                        </div>
 
-            <div className={style.desc}>
-                <label htmlFor="description">Description</label>
-                <input placeholder="Description" name="description" required type={'text'} value={description} onChange={event => setDescription(event.target.value)} />
-            </div>
-        </div>
-        <div className={style.submitBox + (initPostImage !== image ? ' invert' : '')}>
-            <div className={style.file} style={{ 'backgroundImage': 'url(' + image + ')' }}>
-                <input required type={"file"}
-                    accept={'image/*'}
-                    onInput={event => reader.readAsDataURL(event.target.files[0])} />
-            </div>
-            <button type={'submit'} className={style.submitButton}>Submit</button>
-        </div>
-    </form >);
+                        <div className={style.desc}>
+                            <label htmlFor="description">Description</label>
+                            <input placeholder="Description" name="description" required type={'text'} value={description} onChange={event => setDescription(event.target.value)} />
+                        </div>
+                    </div>
+                    <div className={style.submitBox}>
+                        <div className={style.file + (initPostImage !== image ? ' invert' : '')} style={{ 'backgroundImage': 'url(' + image + ')' }}>
+                            <input required type={"file"}
+                                accept={'image/*'}
+                                onInput={event => reader.readAsDataURL(event.target.files[0])} />
+                        </div>
+                        <button type={'submit'} className={style.submitButton}>Submit</button>
+                    </div>
+                </form >
+            )}
+            <button className={style.displayPost} onClick={() => setPost(!post)}>{post ? 'Cancel' : 'Post'}</button>
+        </div >
+    );
 }
 
 export default PostImage;

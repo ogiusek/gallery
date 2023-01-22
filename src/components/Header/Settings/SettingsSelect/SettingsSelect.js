@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./SettingsSelect.module.css";
 
-import AuthContext from "../../../../../other/other/AuthContext";
+import AuthContext from "../../../../other/other/AuthContext";
 
 function SettingsSelect(props) {
     const ctx = React.useContext(AuthContext);

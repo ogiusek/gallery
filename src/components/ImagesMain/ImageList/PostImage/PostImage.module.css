@@ -1,13 +1,27 @@
+.displayPost {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 25px;
+    font-size: 20px;
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.displayPost:hover {
+    filter: invert(10%);
+}
+
 .form {
     width: 440px;
-    min-height: 250px;
     max-width: 100%;
 
     box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0, 0.3);
 
     border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
     margin-bottom: 5px;
 
     display: flex;
@@ -16,6 +30,39 @@
     flex-direction: column;
 }
 
+.form {
+    animation: .7s forwards formAppend;
+}
+
+.form * {
+    animation: .7s forwards formElementAppend;
+}
+
+@keyframes formElementAppend {
+    0% {
+        max-height: 0%;
+        font-size: 0;
+    }
+
+    100% {
+        max-height: 100%;
+    }
+}
+
+@keyframes formAppend {
+    0% {
+        height: 0px;
+
+    }
+
+    99.999% {
+        height: 350px;
+    }
+
+    100% {
+        height: auto;
+    }
+}
 
 .textInputs {
     width: 90%;

@@ -24,6 +24,7 @@ function App() {
     userImg: userImg,
     setLogin: setLogin,
     setPassword: setPassword,
+    setUserImg: setUserImg,
     setError: setError,
     hide_overflow: hide_overflow,
     show_overflow: show_overflow
