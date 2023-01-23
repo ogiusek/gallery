@@ -1,6 +1,6 @@
 .main {
     width: 100vw;
-    height: 150px;
+    /* height: 150px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,9 @@
 }
 
 .registerButton {
+    max-height: 10vh;
+    min-height: 55px;
+
     font-size: 50px;
     height: 120px;
     width: 500px;
@@ -25,10 +28,11 @@
 }
 
 .main label {
-    margin-top: 10px;
     font-size: 20px;
     color: rgb(0, 0, 0, 0.8);
     width: 480px;
     max-width: calc(100% - 20px);
+
+    margin-top: 10px;
     margin-left: 20px;
 }

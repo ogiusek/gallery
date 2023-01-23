@@ -14,9 +14,11 @@ function LoginMain(props) {
             <div className={style.logo}>
                 <Logo />
             </div>
-            {register ?
-                <Register setLogin={props.setLogin} setPassword={props.setPassword} /> :
-                <Login setLogin={props.setLogin} setPassword={props.setPassword} />}
+            <div style={{ 'marginBottom': '5px' }}>
+                {register ?
+                    <Register setLogin={props.setLogin} setPassword={props.setPassword} /> :
+                    <Login setLogin={props.setLogin} setPassword={props.setPassword} />}
+            </div>
             <ChangeLogin register={register} setRegister={setRegister} />
         </div>
     );

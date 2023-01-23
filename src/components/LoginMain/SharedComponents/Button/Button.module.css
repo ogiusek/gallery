@@ -1,12 +1,12 @@
 .button {
     background-color: greenyellow;
     width: 300px;
-    max-width: 100%;
+    max-width: 95vw;
     height: 60px;
     border-radius: 15px;
     color: white;
     font-size: 25px;
-    transition: 0.45s;
+    transition: .45s;
 }
 
 .disabled {

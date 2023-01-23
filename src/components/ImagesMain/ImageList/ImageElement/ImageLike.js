@@ -31,6 +31,7 @@ function ImageLike(props) {
                 },
                 body: JSON.stringify({
                     'comment_id': props.id,
+                    'image_id': props.id,
                     'user_login': ctx.login
                 })
             })
