@@ -20,10 +20,10 @@ function SettingsSelect(props) {
                     unSelect();
                 }} style={{ 'color': 'red' }}>Logout</div>
 
-                <div onClick={() => {
+                {ctx.login !== 'g' && <div onClick={() => {
                     unSelect();
                     props.setSettings(true);
-                }}>Settings</div>
+                }}>Settings</div>}
 
                 <div onClick={() => {
                     unSelect();

@@ -27,6 +27,7 @@
     background-color: greenyellow;
 }
 
+.main div,
 .main label {
     font-size: 20px;
     color: rgb(0, 0, 0, 0.8);
@@ -35,4 +36,9 @@
 
     margin-top: 10px;
     margin-left: 20px;
+}
+
+.main div {
+    margin-top: 0;
+    font-size: 16px;
 }

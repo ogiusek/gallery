@@ -25,6 +25,7 @@ code {
 
 body {
   user-select: none;
+  user-zoom: none;
 }
 
 .no_overflow {

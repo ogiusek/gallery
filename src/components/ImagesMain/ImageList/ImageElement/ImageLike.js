@@ -55,7 +55,7 @@ function ImageLike(props) {
     }
 
     return (
-        <div className={style.likes}> {/* likes */}
+        <div className={style.likes} style={{ 'pointerEvents': ctx.login === 'g' && 'none' }}> {/* likes */}
             <div style={{ maxWidth: '30%' }} onClick={giveLike}> {/* like */}
                 <img src={imageImages.like} alt="like" loading="lazy" className={(props.like === 1 ? style.selectedLike + ' selectedLike' : '')} />
                 <h1>{props.likes}</h1>

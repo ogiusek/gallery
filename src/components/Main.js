@@ -11,6 +11,10 @@ function Main(props) {
             setIsLogged(false);
             return;
         }
+        if (login === 'g') {
+            setIsLogged(true);
+            return;
+        }
         fetch(link + 'users/' + login)
             .then(response => response.json())
             .then(result => {

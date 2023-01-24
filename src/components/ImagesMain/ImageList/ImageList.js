@@ -5,6 +5,7 @@ import ImageElement from "./ImageElement/ImageElement";
 import PostImage from "./PostImage/PostImage";
 import link from "../../../other/other/link";
 import AuthContext from "../../../other/other/AuthContext";
+import ImagesFilters from "./ImagesFilters/ImagesFilters";
 
 function ImageList() {
     const ctx = React.useContext(AuthContext);
@@ -26,23 +27,29 @@ function ImageList() {
         fetchImages();
     }, []);
 
-    return (<div className={style.main}>
-        {loading ? <div /> : <PostImage refresh={fetchImages} />}
-        {Array.isArray(images) && images.map((element) => {
-            return <ImageElement
-                key={element[0]}
-                id={element[0]}
-                user={element[1]}
-                name={element[2]}
-                description={element[3]}
-                value={element[4]}
-                userImg={element[6]}
-                likes={element[7] + 0}
-                unLikes={element[8] + 0}
-                liked={element[9]}
-            />;
-        })}
-    </div>);
+    return (
+        <div>
+            {!loading ?
+                (<div className={style.main}>
+                    {ctx.login !== 'g' && <PostImage refresh={fetchImages} />}
+                    <ImagesFilters images={images} setImages={setImages} />
+                    {Array.isArray(images) && images.map((element) => {
+                        return <ImageElement
+                            key={element[0]}
+                            id={element[0]}
+                            user={element[1]}
+                            name={element[2]}
+                            description={element[3]}
+                            value={element[4]}
+                            userImg={element[6]}
+                            likes={element[7] + 0}
+                            unLikes={element[8] + 0}
+                            liked={element[9]}
+                        />;
+                    })}
+                </div>)
+                : <div>...</div>}
+        </div>);
 }
 
 export default ImageList;
